@@ -1,0 +1,72 @@
+[tool.poetry]
+name = "resource-adapter"
+version = "0.1.0"
+description = ""
+authors = ["vunk.lai <vunk.lai@gmail.com>"]
+readme = "README.md"
+packages = [{include = "resource_adapter"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+# pulumi
+pulumi = "^3.79.0"
+pulumi-aws = "^5.42.0"
+# other
+attrs = "^23.1.0"
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.14.0"
+# format
+black = "^23.7.0"
+isort = "^5.12.0"
+# lint
+pylint = "^2.17.5"
+mypy = "^1.5.1"
+# commit
+commitizen = "^3.7.0"
+
+[tool.isort]
+profile = "black"
+known_pulumi = "pulumi,pulumi_aws"
+sections = "FUTURE,STDLIB,PULUMI,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+
+[tool.pylint.main]
+load-plugins = [
+]
+ignore = [
+]
+
+[tool.pylint.messages_control]
+disable = [
+  "missing-module-docstring",
+  "missing-class-docstring",
+  "missing-function-docstring",
+  "too-few-public-methods",
+  "fixme",
+  "too-many-arguments",
+  "too-many-locals",
+]
+
+[tool.pylint.basic]
+good-names = [
+  "pk",
+  "_",
+  "fr",
+  "id",
+]
+
+[tool.mypy]
+ignore_missing_imports = true
+exclude = [
+]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "pep440"
+version_provider = "poetry"
+update_changelog_on_bump = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
