@@ -23,3 +23,7 @@ class ResourceNaming:
         if self.name is None:
             return self.prefix
         return f"{self.prefix}-{self.name}"
+
+
+def any_resources(parent: pulumi.CustomResource) -> list[pulumi.Output[str]]:
+    return parent.arn.apply(lambda arn: [arn, arn + "/*"])
